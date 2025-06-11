@@ -66,7 +66,11 @@ public class Client
 
     public void Play()
     {
-        throw new NotImplementedException();
+        // Print the currently playing song if it is a Song instance
+        if (CurrentlyPlaying is Song song)
+        {
+            Console.WriteLine(song.ToString());
+        }
     }
 
     public void Pause()

@@ -46,6 +46,7 @@ public class Song : IPlayable
 
     public override string ToString()
     {
+        // When songs are made put the data here to complete View track artist issue
         throw new NotImplementedException();
     }
 }
