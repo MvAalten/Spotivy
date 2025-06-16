@@ -20,7 +20,7 @@ namespace Spotivy.Classes
             playables = new List<IPlayable>();
         }
 
-        public void AddPlayable(IPlayable playable)
+        public void Add(IPlayable playable)
         {
             playables.Add(playable);
         }
