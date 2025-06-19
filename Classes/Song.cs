@@ -4,16 +4,23 @@ using System.Collections.Generic;
 public class Song : IPlayable
 {
     public string Title { get; private set; }
-
     public List<Artist> Artists { get; private set; }
-
     public Genre SongGenre { get; private set; }
-
-    public int Duur { get; private set; }
-
+    public int Time { get; private set; }
+    /**
+     * Creates a song with the specified title, artists, duration, and genre.
+     */
     public Song(string title, List<Artist> artists, int duur, Genre genre)
     {
-        throw new NotImplementedException();
+        Title = title;
+        Artists = artists;
+        Time = Time;
+        SongGenre = genre;
+
+        foreach (var artist in artists)
+        {
+            artist.AddSong(this);
+        }
     }
 
     public void Play()
@@ -35,18 +42,23 @@ public class Song : IPlayable
     {
         throw new NotImplementedException();
     }
-
+    /**
+     * Returns the length of the song.
+     */
     public int Length
     {
         get
         {
-            throw new NotImplementedException();
+            return Time;
         }
     }
-
+    /**
+     * Returns title, artists, genre, and duration of the song.
+     */
     public override string ToString()
     {
-        // When songs are made put the data here to complete View track artist issue
-        throw new NotImplementedException();
+        // Gets a list of all artist names andn puts them all into one string diveded by a comma.
+        var artistNames = string.Join(", ", Artists.ConvertAll(a => a.Naam));
+        return $"{Title} by {artistNames} [{SongGenre}] - {Time}s";
     }
 }

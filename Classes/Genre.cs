@@ -1,4 +1,7 @@
-﻿public enum Genre
+﻿/**
+ * Music genre library
+ */
+public enum Genre
 {
     Pop,
     Rock,
