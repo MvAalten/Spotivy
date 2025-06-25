@@ -82,9 +82,47 @@ public class Client
         throw new NotImplementedException();
     }
 
+    /**Add commentMore actions
+         * Plays currently selected song
+         *
+         * If song is selected the song plays.
+         * The song plays untill the song duration is over
+         *
+         * If track is finished, playing = false.
+         *
+         * If function is called upon without a song being given print "No track selected to play.".
+         */
     public void Play()
     {
-        throw new NotImplementedException();
+        if (CurrentlyPlaying != null)
+        {
+            Playing = true;
+            Console.WriteLine($"Now playing: {CurrentlyPlaying}");
+            // Plays a song from Song('s)
+            if (CurrentlyPlaying is Song song)
+            {
+                int songLength = song.Length;
+                CurrentTime = 0;
+
+                while (CurrentTime < songLength && Playing)
+                {
+                    // wait 1 second
+                    Thread.Sleep(1000);
+                    CurrentTime++;
+                }
+
+                if (Playing)
+                {
+                    Console.WriteLine("Track finished playing.");
+                    Playing = false;
+                    CurrentTime = 0;
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("No track selected to play.");
+        }
     }
 
     public void Pause()
