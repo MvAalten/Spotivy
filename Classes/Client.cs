@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spotivy.Classes;
+using System;
 using System.Collections.Generic;
 public interface iPlayable { }
 
@@ -21,7 +22,10 @@ public class Client
 
     public void SetActiveUser(Person person)
     {
-        throw new NotImplementedException();
+        if (person is SuperUser user)
+        {
+            ActiveUser = user;
+        }
     }
 
     public void ShowAllAlbums()
@@ -98,7 +102,11 @@ public class Client
 
     public void SelectUserPlaylist(int index)
     {
-        throw new NotImplementedException();
+        if (ActiveUser != null && index >= 0 && index < ActiveUser.Playlists.Count)
+        {
+            var selected = ActiveUser.Playlists[index];
+            Console.WriteLine("Selected playlist: " + selected.Title);
+        }
     }
     /**
      * Plays currently selected song
@@ -112,6 +120,7 @@ public class Client
      */
     public void Play()
     {
+<<<<<<< View-User-Profile
         if (CurrentlyPlaying != null)
         {
             Playing = true;
@@ -140,6 +149,12 @@ public class Client
         else
         {
             Console.WriteLine("No track selected to play.");
+=======
+        // Print the currently playing song if it is a Song instance
+        if (CurrentlyPlaying is Song song)
+        {
+            Console.WriteLine(song.ToString());
+>>>>>>> Development
         }
     }
 
@@ -169,14 +184,19 @@ public class Client
         throw new NotImplementedException();
     }
 
-    public void CreatePlaylist(string name)
+    public void CreatePlaylist(string title)
     {
-        throw new NotImplementedException();
+        if (ActiveUser != null && !string.IsNullOrWhiteSpace(title))
+        {
+            var playlist = new Playlist(ActiveUser, title);
+            ActiveUser.Playlists.Add(playlist);
+        }
     }
 
+    // Show all playlists of the active user
     public void ShowPlaylists()
     {
-        throw new NotImplementedException();
+        ActiveUser?.ShowPlaylists();    
     }
 
     public void SelectPlaylist(int index)
@@ -186,7 +206,10 @@ public class Client
 
     public void RemovePlaylist(int index)
     {
-        throw new NotImplementedException();
+        if (ActiveUser != null && index >= 0 && index < ActiveUser.Playlists.Count)
+        {
+            ActiveUser.Playlists.RemoveAt(index);
+        }
     }
 
     public void AddToPlaylist(int index)
