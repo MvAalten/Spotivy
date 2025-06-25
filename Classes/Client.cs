@@ -19,13 +19,12 @@ public class Client
         throw new NotImplementedException();
     }
 
-    public void SetActiveUser(int index)
+    public void SetActiveUser(Person)
     {
-        if (index >= 0 && index < AllUsers.Count && AllUsers[index] is SuperUser user)
+        if (Person >= 0 && Person < AllUsers.Count && AllUsers[index] is SuperUser user)
         {
             ActiveUser = user;
         }
-    }
 
     public void ShowAllAlbums()
     {
