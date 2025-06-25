@@ -29,9 +29,22 @@ public class Client
         throw new NotImplementedException();
     }
 
+    /**
+     * Prints artist of a selected album
+     *
+     * If there are no artists that are equal to the albums count throw error.
+     */
     public void SelectAlbum(int index)
     {
-        throw new NotImplementedException();
+        if (index >= 1 && index <= AllAlbums.Count)
+        {
+            Album selectedAlbum = AllAlbums[index - 1];
+            Console.WriteLine(selectedAlbum.ShowArtists());
+        }
+        else
+        {
+            Console.WriteLine("Invalid album selection.");
+        }
     }
 
     public void ShowAllSongs()
