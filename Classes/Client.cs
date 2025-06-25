@@ -19,12 +19,10 @@ public class Client
         throw new NotImplementedException();
     }
 
-    public void SetActiveUser(Person)
+    public void SetActiveUser(Person person)
     {
-        if (Person >= 0 && Person < AllUsers.Count && AllUsers[index] is SuperUser user)
-        {
-            ActiveUser = user;
-        }
+        throw new NotImplementedException();
+    }
 
     public void ShowAllAlbums()
     {
@@ -46,14 +44,22 @@ public class Client
         throw new NotImplementedException();
     }
 
-    // Show all available users with their index
+    /**
+     * For every user print out a user
+     */
     public void ShowAllUsers()
     {
+        Console.WriteLine("=== ALL USERS ===");
         for (int i = 0; i < AllUsers.Count; i++)
         {
-            Console.WriteLine($"{i}: {AllUsers[i].Name}");
+            Console.WriteLine($"{i + 1}. {AllUsers[i]}");
         }
     }
+
+     /**
+     * Displays a users profile name, friends and playlists based on the given index
+     * If the index is invalid, shows an error message.
+     */
     public void SelectUser(int index)
     {
         if (index >= 1 && index <= AllUsers.Count)
