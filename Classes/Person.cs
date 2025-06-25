@@ -1,8 +1,7 @@
-﻿// File: Person.cs
-using Spotivy.Classes;
+﻿using Spotivy.Classes;
 using System;
 using System.Collections.Generic;
-
+// A person can have multiple playlists
 public class Person
 {
     public string Name { get; private set; }
@@ -15,8 +14,8 @@ public class Person
     {
         Name = name;
         Friends = new List<Person>();
-        Playlists = new List<Playlist>();    }
-
+        Playlists = new List<Playlist>();    
+    }
     /**
      * If you have no friends return
      *
@@ -59,7 +58,7 @@ public class Person
         
     }
 
-    public List<Playlist> SelectPlaylists()
+public List<Playlist> SelectPlaylists()
     {
         return Playlists;
     }

@@ -8,27 +8,31 @@ namespace Spotivy.Classes
 {
     public class Playlist : SongCollection
     {
-        public Person Owner { get; private set; }
+        public string Title { get; }
+        public Person Owner { get; }
+        private List<IPlayable> playables;
 
+        // Constructor to create a new playlist
         public Playlist(Person owner, string title)
-            : base(title)
         {
-            throw new NotImplementedException();
+            Owner = owner;
+            Title = title;
+            playables = new List<IPlayable>();
         }
 
         public void Add(IPlayable playable)
         {
-            throw new NotImplementedException();
+            playables.Add(playable);
         }
 
         public void Remove(IPlayable playable)
         {
-            throw new NotImplementedException();
+            playables.Remove(playable);
         }
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return Title;
         }
     }
 }
