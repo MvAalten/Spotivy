@@ -33,9 +33,22 @@ public class Client
         throw new NotImplementedException();
     }
 
+    /**
+     * Prints artist of a selected album
+     *
+     * If there are no artists that are equal to the albums count throw error.
+     */
     public void SelectAlbum(int index)
     {
-        throw new NotImplementedException();
+        if (index >= 1 && index <= AllAlbums.Count)
+        {
+            Album selectedAlbum = AllAlbums[index - 1];
+            Console.WriteLine(selectedAlbum.ShowArtists());
+        }
+        else
+        {
+            Console.WriteLine("Invalid album selection.");
+        }
     }
 
     public void ShowAllSongs()
@@ -95,15 +108,56 @@ public class Client
             Console.WriteLine("Selected playlist: " + selected.Title);
         }
     }
-
+    /**
+     * Plays currently selected song
+     *
+     * If song is selected the song plays.
+     * The song plays untill the song duration is over
+     *
+     * If track is finished, playing = false.
+     * 
+     * If function is called upon without a song being given print "No track selected to play.".
+     */
     public void Play()
     {
+<<<<<<< View-User-Profile
+        if (CurrentlyPlaying != null)
+        {
+            Playing = true;
+            Console.WriteLine($"Now playing: {CurrentlyPlaying}");
+            // Plays a song from Song('s)
+            if (CurrentlyPlaying is Song song)
+            {
+                int songLength = song.Length;
+                CurrentTime = 0;
+
+                while (CurrentTime < songLength && Playing)
+                {
+                    // wait 1 second
+                    Thread.Sleep(1000);
+                    CurrentTime++;
+                }
+
+                if (Playing)
+                {
+                    Console.WriteLine("Track finished playing.");
+                    Playing = false;
+                    CurrentTime = 0;
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("No track selected to play.");
+=======
         // Print the currently playing song if it is a Song instance
         if (CurrentlyPlaying is Song song)
         {
             Console.WriteLine(song.ToString());
+>>>>>>> Development
         }
     }
+
 
     public void Pause()
     {
