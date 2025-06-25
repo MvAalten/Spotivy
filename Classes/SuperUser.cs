@@ -3,8 +3,8 @@ using System;
 
 public class SuperUser : Person
 {
-    public SuperUser(string naam)
-        : base(naam)
+    public SuperUser(string name)
+        : base(name)
     {
         throw new NotImplementedException();
     }
