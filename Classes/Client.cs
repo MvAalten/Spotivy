@@ -19,9 +19,12 @@ public class Client
         throw new NotImplementedException();
     }
 
-    public void SetActiveUser(Person person)
+    public void SetActiveUser(int index)
     {
-        throw new NotImplementedException();
+        if (index >= 0 && index < AllUsers.Count && AllUsers[index] is SuperUser user)
+        {
+            ActiveUser = user;
+        }
     }
 
     public void ShowAllAlbums()
@@ -44,10 +47,15 @@ public class Client
         throw new NotImplementedException();
     }
 
+    // Show all available users with their index
     public void ShowAllUsers()
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < AllUsers.Count; i++)
+        {
+            Console.WriteLine($"{i}: {AllUsers[i].Name}");
+        }
     }
+
 
     public void SelectUser(int index)
     {

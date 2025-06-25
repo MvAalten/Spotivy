@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 public class Person
 {
-    public string Naam { get; private set; }
+    public string Name { get; private set; }
 
     public List<Person> Friends { get; private set; }
 
     public List<Playlist> Playlists { get; private set; }
 
-    public Person(string naam)
+    public Person(string name)
     {
-        throw new NotImplementedException();
+        Name = name;
     }
 
     public string ShowFriends()
@@ -33,6 +33,6 @@ public class Person
 
     public override string ToString()
     {
-        throw new NotImplementedException();
+        return Name;
     }
 }
