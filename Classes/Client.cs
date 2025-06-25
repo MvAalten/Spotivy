@@ -55,12 +55,23 @@ public class Client
             Console.WriteLine($"{i}: {AllUsers[i].Name}");
         }
     }
-
-
     public void SelectUser(int index)
     {
-        throw new NotImplementedException();
-    }
+        if (index >= 1 && index <= AllUsers.Count)
+        {
+            Person selectedUser = AllUsers[index - 1];
+            Console.WriteLine($"=== USER PROFILE ===");
+            Console.WriteLine($"Name: {selectedUser.Name}");
+            Console.WriteLine();
+            Console.WriteLine(selectedUser.ShowFriends());
+            Console.WriteLine();
+            Console.WriteLine(selectedUser.ShowPlaylists());
+        }
+        else
+        {
+            Console.WriteLine("Invalid user selection.");
+        }
+    }    
 
     public void ShowUserPlaylists()
     {
