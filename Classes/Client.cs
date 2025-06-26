@@ -66,7 +66,60 @@ public class Client
 
     public void Play()
     {
-        throw new NotImplementedException();
+        if (CurrentlyPlaying != null)
+        {
+            Playing = true;
+            if (CurrentlyPlaying is Song song)
+            {
+                Console.WriteLine($"Now playing: {CurrentlyPlaying}");
+                int songLength = song.Length;
+                CurrentTime = 0;
+                while (CurrentTime < songLength && Playing)
+                {
+                    Thread.Sleep(1000);
+                    CurrentTime++;
+                }
+                if (Playing)
+                {
+                    Console.WriteLine("Track finished playing.");
+                    Playing = false;
+                    CurrentTime = 0;
+                }
+            }
+            else if (CurrentlyPlaying is SongCollection playlist)
+            {
+                Console.WriteLine($"Now playing playlist: {playlist.Title}");
+                for (int i = 0; i < playlist.Playables.Count && Playing; i++)
+                {
+                    var track = playlist.Playables[i];
+                    if (track is Song playlistSong)
+                    {
+                        Console.WriteLine($"Now playing: {playlistSong}");
+                        int songLength = playlistSong.Length;
+                        CurrentTime = 0;
+                        while (CurrentTime < songLength && Playing)
+                        {
+                            Thread.Sleep(1000);
+                            CurrentTime++;
+                        }
+                        if (Playing)
+                        {
+                            Console.WriteLine("Track finished playing.");
+                        }
+                    }
+                }
+                if (Playing)
+                {
+                    Console.WriteLine("Playlist finished playing.");
+                    Playing = false;
+                    CurrentTime = 0;
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("No track selected to play.");
+        }
     }
 
     public void Pause()
