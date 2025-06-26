@@ -108,36 +108,28 @@ public class Client
             Console.WriteLine("Selected playlist: " + selected.Title);
         }
     }
-    /**
-     * Plays currently selected song
-     *
-     * If song is selected the song plays.
-     * The song plays untill the song duration is over
-     *
-     * If track is finished, playing = false.
-     * 
-     * If function is called upon without a song being given print "No track selected to play.".
-     */
     public void Play()
     {
-<<<<<<< View-User-Profile
+        // Plays currently selected song*
         if (CurrentlyPlaying != null)
         {
             Playing = true;
-            Console.WriteLine($"Now playing: {CurrentlyPlaying}");
-            // Plays a song from Song('s)
+
+            // If song is selected the song plays.
             if (CurrentlyPlaying is Song song)
             {
+                Console.WriteLine($"Now playing: {CurrentlyPlaying}");
                 int songLength = song.Length;
                 CurrentTime = 0;
 
+                // The song plays until the song duration is over*
                 while (CurrentTime < songLength && Playing)
                 {
-                    // wait 1 second
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1000); // Simulate 1 second of playback
                     CurrentTime++;
                 }
 
+                // If track is finished, playing = false.
                 if (Playing)
                 {
                     Console.WriteLine("Track finished playing.");
@@ -145,18 +137,52 @@ public class Client
                     CurrentTime = 0;
                 }
             }
+            // If a playlist is selected instead
+            else if (CurrentlyPlaying is SongCollection playlist)
+            {
+                Console.WriteLine($"Now playing playlist: {playlist.Title}");
+
+                for (int i = 0; i < playlist.Playables.Count && Playing; i++)
+                {
+                    var track = playlist.Playables[i];
+                    if (track is Song playlistSong)
+                    {
+                        Console.WriteLine($"Now playing: {playlistSong}");
+                        int songLength = playlistSong.Length;
+                        CurrentTime = 0;
+
+                        // The song plays until the song duration is over*
+                        while (CurrentTime < songLength && Playing)
+                        {
+                            Thread.Sleep(1000);
+                            CurrentTime++;
+                        }
+
+                        // If track is finished, print message
+                        if (Playing)
+                        {
+                            Console.WriteLine("Track finished playing.");
+                        }
+                    }
+                }
+
+                // If track is finished, playing = false.
+                if (Playing)
+                {
+                    Console.WriteLine("Playlist finished playing.");
+                    Playing = false;
+                    CurrentTime = 0;
+                }
+            }
         }
         else
         {
+            // If function is called upon without a song being given print "No track selected to play."*
             Console.WriteLine("No track selected to play.");
-=======
-        // Print the currently playing song if it is a Song instance
-        if (CurrentlyPlaying is Song song)
-        {
-            Console.WriteLine(song.ToString());
->>>>>>> Development
         }
     }
+
+
 
 
     public void Pause()
